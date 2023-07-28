@@ -42,11 +42,6 @@ steps:
       command: 'restore'
       projects: 'src\Devil.Cli\Devil.Cli.csproj'
   - task: DotNetCoreCLI@2
-    displayName: 'nuget restore Maui'
-    inputs:
-      command: 'restore'
-      projects: 'src\Devil.Maui\Devil.Maui.csproj'
-  - task: DotNetCoreCLI@2
     displayName: 'nuget restore Wpf'
     inputs:
       command: 'restore'
@@ -67,12 +62,6 @@ steps:
     inputs:
       command: 'build'
       projects: 'src\Devil.Cli\Devil.Cli.csproj'
-  - task: DotNetCoreCLI@2
-    displayName: 'dotnet build Maui'
-    enabled: ${{ eq(parameters.doPublish, false) }}
-    inputs:
-      command: 'build'
-      projects: 'src\Devil.Maui\Devil.Maui.csproj'
   - task: DotNetCoreCLI@2
     displayName: 'dotnet build Wpf'
     enabled: ${{ eq(parameters.doPublish, false) }}
@@ -114,11 +103,6 @@ steps:
     enabled: ${{ parameters.doPublish }}
     inputs:
       script: 'dotnet publish src\Devil.Wpf\Devil.Wpf.csproj -o $(Build.ArtifactStagingDirectory)/publish/Devil.Wpf -c Release'
-  - task: CmdLine@2
-    displayName: 'Publish Maui'
-    enabled: ${{ parameters.doPublish }}
-    inputs:
-      script: 'dotnet publish src\Devil.Maui\Devil.Maui.csproj -f net7.0-windows10.0.19041.0 -p:RuntimeIdentifierOverride=win10-x64  -o $(Build.ArtifactStagingDirectory)/publish/Devil.Maui -c Release'
   - task: CmdLine@2
     displayName: 'Publish Web Server'
     enabled: ${{ parameters.doPublish }}
