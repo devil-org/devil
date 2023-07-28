@@ -16,6 +16,14 @@ steps:
     displayName: 'Install dotnet workloads'
     inputs:
       script: 'dotnet workload restore src/Devil.sln'
+  - task: Npm@1
+    displayName: 'npm install'
+    inputs:
+      workingDir: 'src/Devil.UI'
+      verbose: true
+  - script: 'npx webpack --config webpack.config.js'
+    workingDirectory: 'src/Devil.UI'
+    displayName: 'webpack js build'
   - task: DotNetCoreCLI@2
     displayName: 'nuget restore Wpf'
     inputs:
