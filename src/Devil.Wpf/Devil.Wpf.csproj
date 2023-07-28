@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+	<Import Project="../BuildTarget.targets" />
+	<Import Project="../BuildSettings.targets" />
+	<Import Project="../Versions.targets" />
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.Wpf" Version="7.0.92" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
+	</ItemGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\Devil.UI\Devil.UI.csproj" />
+	</ItemGroup>
+</Project>

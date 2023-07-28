@@ -1,0 +1,36 @@
+﻿@if (this._errors.Any())
+{
+    <Card>
+        <CardHeader>
+            An Error Occurred!
+        </CardHeader>
+        <CardBody>
+            <CardText>
+                Unfortuantly the following errors occurred.  Please Reach out to your system administrator to investigate the issue.
+                <ul>
+                    @foreach (var err in _errors)
+                    {
+                        <li class="error-item">@err</li>
+                    }
+                </ul>
+            </CardText>
+        </CardBody>
+    </Card>
+
+}
+
+@code {
+    List<string> _errors { get; set; } = new List<string>();
+
+    public void SetErrors(IEnumerable<string> errs)
+    {
+        this._errors.Clear();
+        foreach (var err in errs)
+            this._errors.Add(err);
+
+        InvokeAsync(() =>
+        {
+            StateHasChanged();
+        });
+    }
+}
