@@ -23,10 +23,10 @@ steps:
   - task: SonarCloudPrepare@1
     inputs:
       SonarCloud: 'Sonar'
-      organization: 'jeffreyladd'
+      organization: 'devil-org'
       scannerMode: 'MSBuild'
-      projectKey: 'JeffreyLadd_Devil'
-      projectName: 'Devil'
+      projectKey: 'devil-org_devil'
+      projectName: 'devil'
       projectVersion: '$(majorMinorVersion).$(semanticVersion)'
   - task: Npm@1
     displayName: 'npm install'
