@@ -75,18 +75,18 @@ steps:
       command: 'build'
       projects: 'src\Devil.Web\Client\Devil.Web.Client.csproj'
   - task: DotNetCoreCLI@2
+    displayName: 'dotnet build Web Server'
+    enabled: ${{ eq(parameters.doPublish, false) }}
+    inputs:
+      command: 'build'
+      projects: 'src\Devil.Web\Server\Devil.Web.Server.csproj'
+  - task: DotNetCoreCLI@2
     displayName: 'Unit/Intergration Tests'
     inputs:
       command: 'test'
       projects: 'src\Devil.Tests\Devil.Tests.csproj'
       testRunTitle: '$(majorMinorVersion).$(semanticVersion)-TestRun'
       arguments: '--collect "Code Coverage"'
-  - task: DotNetCoreCLI@2
-    displayName: 'dotnet build Web Server'
-    enabled: ${{ eq(parameters.doPublish, false) }}
-    inputs:
-      command: 'build'
-      projects: 'src\Devil.Web\Server\Devil.Web.Server.csproj'
   - task: SonarCloudAnalyze@1
     inputs:
       jdkversion: 'JAVA_HOME_11_X64'
