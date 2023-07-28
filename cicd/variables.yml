@@ -1,4 +1,5 @@
 variables:
+- group: Sonar_Token
   majorMinorVersion: 0.1
   semanticVersion: $[counter(variables['majorMinorVersion'], 0)]
   tag: $[replace(variables['Build.SourceBranch'], 'refs/tags/', '')]
