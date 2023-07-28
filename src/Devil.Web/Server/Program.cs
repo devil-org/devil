@@ -1,4 +1,6 @@
-using Microsoft.AspNetCore.ResponseCompression;
+using Devil;
+
+await ConfigurationUtils.SetupFirstRun();
 
 var builder = WebApplication.CreateBuilder(args);
 

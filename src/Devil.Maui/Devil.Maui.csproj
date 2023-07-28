@@ -51,7 +51,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Devil.UI\Devil.UI.csproj" />
+		<ProjectReference Include="..\Devil.Domain\Devil.Domain.csproj" />
+		<ProjectReference Include="..\Devil.Services\Devil.Services.csproj" />
+		<ProjectReference Include="..\Devil.UI\Devil.UI.csproj" />
+		<ProjectReference Include="..\Devil.Util\Devil.Util.csproj" />
     </ItemGroup>
 
 </Project>

@@ -29,10 +29,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Devil.UI", "Devil.UI\Devil.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{DDA8CC7D-26D3-4AB6-8813-7C70B57FCF98}"
 	ProjectSection(SolutionItems) = preProject
+		BuildSettings.targets = BuildSettings.targets
 		BuildTarget.targets = BuildTarget.targets
 		Versions.targets = Versions.targets
-		BuildSettings.targets = BuildSettings.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devil.Tests", "Devil.Tests\Devil.Tests.csproj", "{199611D0-27C1-465A-B2F0-5333BE44D086}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -82,6 +84,10 @@ Global
 		{271D1030-6185-49E5-A1E0-B3439A8E8D0A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{271D1030-6185-49E5-A1E0-B3439A8E8D0A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{271D1030-6185-49E5-A1E0-B3439A8E8D0A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{199611D0-27C1-465A-B2F0-5333BE44D086}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{199611D0-27C1-465A-B2F0-5333BE44D086}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{199611D0-27C1-465A-B2F0-5333BE44D086}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{199611D0-27C1-465A-B2F0-5333BE44D086}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

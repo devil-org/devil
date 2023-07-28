@@ -6,4 +6,9 @@
     <OutputType>Exe</OutputType>
   </PropertyGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\Devil.Domain\Devil.Domain.csproj" />
+		<ProjectReference Include="..\Devil.Services\Devil.Services.csproj" />
+		<ProjectReference Include="..\Devil.Util\Devil.Util.csproj" />
+	</ItemGroup>
 </Project>

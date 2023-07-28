@@ -5,8 +5,9 @@ namespace Devil.Maui
 {
     public static class MauiProgram
     {
-        public static MauiApp CreateMauiApp()
+        public static async Task<MauiApp> CreateMauiAppAsync()
         {
+            await ConfigurationUtils.SetupFirstRun();
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
