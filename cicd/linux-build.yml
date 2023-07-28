@@ -15,7 +15,7 @@ steps:
   - task: CmdLine@2
     displayName: 'Install dotnet workloads'
     inputs:
-      script: 'dotnet workload restore src/Devil.sln'
+      script: 'dotnet workload restore src/Devil.linux.sln'
   - task: CmdLine@2
     displayName: 'Install docfx'
     inputs:
