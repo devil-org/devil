@@ -20,4 +20,9 @@
 		<ProjectReference Include="..\Devil.Util\Devil.Util.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Services\" />
+	  <Folder Include="UI\" />
+	</ItemGroup>
+
 </Project>

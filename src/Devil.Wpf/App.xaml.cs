@@ -23,6 +23,7 @@ public partial class App : Application
             .ConfigureAppConfiguration(c =>
             {
                 c.SetBasePath(appLocation!);
+                c.AddJsonFile(ConfigurationUtils.DevilConfigurationFilePath);
             })
             .ConfigureServices(ConfigureServices)
             .Build();
