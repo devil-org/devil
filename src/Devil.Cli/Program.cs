@@ -7,8 +7,6 @@ await ConfigurationUtils.SetupFirstRun();
 
 using IHost _host = Host.CreateDefaultBuilder(args)
     .ConfigureAppConfiguration((h, conf) => {
-        conf.Sources.Clear();
-        IHostEnvironment env = h.HostingEnvironment;
         conf.AddJsonFile(ConfigurationUtils.DevilConfigurationFilePath);
     })
     .ConfigureServices((h, s) =>
