@@ -12,7 +12,7 @@ namespace Devil.UI;
 public static class ServiceCollectionExtensions
 {
     /// <summary>
-    /// Extension Method to setup all the TPIE.UI Dependencies.
+    /// Extension Method to setup all the Devil.UI Dependencies.
     /// </summary>
     /// <param name="services">The Service Collection for DI.</param>
     /// <param name="config">The configuration.</param>

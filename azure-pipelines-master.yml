@@ -1,0 +1,26 @@
+name: $(majorMinorVersion).$(semanticVersion)-RC # $(rev:r) 
+
+trigger:
+  branches:
+    include:
+    - master
+
+pr: none
+
+
+variables:
+- template: cicd/variables.yml
+
+pool:
+  vmImage: windows-latest
+
+stages:
+  - stage: 'BuildAndPublish'
+    displayName: 'Build and Publish'
+    jobs:
+      - job: 
+        steps:
+          - template: cicd/steps.yml
+            parameters:
+              doPublish: true
+              tag: '$(majorMinorVersion).$(semanticVersion)-RC'
