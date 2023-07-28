@@ -13,5 +13,5 @@ public sealed class DevilConfig
     /// <summary>
     /// The Connection string to use for the connection.
     /// </summary>
-    public string DatabaseConnection { get; set; } = $"Data Source={ConfigurationUtils.DevilConfigurationFolderPath}\\.devil\\devil.db";
+    public string DatabaseConnection { get; set; } = $"Data Source={ConfigurationUtils.DevilConfigurationFolderPath}\\devil.db";
 }
