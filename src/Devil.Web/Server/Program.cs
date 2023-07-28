@@ -1,6 +1,9 @@
-using Microsoft.AspNetCore.ResponseCompression;
+using Devil;
+
+await ConfigurationUtils.SetupFirstRun();
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddJsonFile(ConfigurationUtils.DevilConfigurationFilePath);
 
 // Add services to the container.
 

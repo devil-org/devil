@@ -14,14 +14,16 @@ public partial class App : Application
 {
     public static IHost? Host { get; private set; }
 
-    protected override void OnStartup(StartupEventArgs e)
+    protected override async void OnStartup(StartupEventArgs e)
     {
+        await ConfigurationUtils.SetupFirstRun();
         var appLocation = System.IO.Path.GetDirectoryName(Assembly.GetEntryAssembly()!.Location);
 
         Host = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder(e.Args)
             .ConfigureAppConfiguration(c =>
             {
                 c.SetBasePath(appLocation!);
+                c.AddJsonFile(ConfigurationUtils.DevilConfigurationFilePath);
             })
             .ConfigureServices(ConfigureServices)
             .Build();

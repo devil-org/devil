@@ -9,15 +9,21 @@ pr:
 variables:
 - template: cicd/variables.yml
 
-pool:
-  vmImage: windows-latest
-
 stages:
   - stage: 'BuildAndCompile'
     displayName: 'Build'
     jobs:
       - job: 
+        pool:
+          vmImage: 'ubuntu-latest'
         steps:
-          - template: cicd/steps.yml
+          - template: cicd/linux-build.yml
+            parameters:
+              doPublish: false
+      - job: 
+        pool:
+          vmImage: 'windows-latest'
+        steps:
+          - template: cicd/win-build.yml
             parameters:
               doPublish: false

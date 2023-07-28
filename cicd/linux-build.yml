@@ -1,0 +1,99 @@
+parameters:
+- name: 'doPublish'
+  default: true
+  type: boolean
+- name: 'tag'
+  default: ''
+  type: string
+
+steps:
+  - task: UseDotNet@2
+    displayName: 'Install dotnet 7'
+    inputs:
+      packageType: 'sdk'
+      version: '7.x'
+  - task: CmdLine@2
+    displayName: 'Install dotnet workloads'
+    inputs:
+      script: 'dotnet workload restore src/Devil.linux.sln'
+  - task: CmdLine@2
+    displayName: 'Install docfx'
+    inputs:
+      script: 'dotnet tool install -g docfx'
+  - task: SonarCloudPrepare@1
+    inputs:
+      SonarCloud: 'Sonar'
+      organization: 'devil-org'
+      scannerMode: 'MSBuild'
+      projectKey: 'devil-org_devil'
+      projectName: 'devil'
+      projectVersion: '$(majorMinorVersion).$(semanticVersion)'
+  - task: Npm@1
+    displayName: 'npm install'
+    inputs:
+      workingDir: 'src/Devil.UI'
+      verbose: true
+  - script: 'npx webpack --config webpack.config.js'
+    workingDirectory: 'src/Devil.UI'
+    displayName: 'webpack js build'
+  - task: DotNetCoreCLI@2
+    displayName: 'nuget restore Cli'
+    inputs:
+      command: 'restore'
+      projects: 'src/Devil.Cli/Devil.Cli.csproj'
+  - task: DotNetCoreCLI@2
+    displayName: 'nuget restore Web Client'
+    inputs:
+      command: 'restore'
+      projects: 'src/Devil.Web/Client/Devil.Web.Client.csproj'
+  - task: DotNetCoreCLI@2
+    displayName: 'nuget restore Web Server'
+    inputs:
+      command: 'restore'
+      projects: 'src/Devil.Web/Server/Devil.Web.Server.csproj'
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet build Cli'
+    enabled: ${{ eq(parameters.doPublish, false) }}
+    inputs:
+      command: 'build'
+      projects: 'src/Devil.Cli/Devil.Cli.csproj'
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet build Web Client'
+    enabled: ${{ eq(parameters.doPublish, false) }}
+    inputs:
+      command: 'build'
+      projects: 'src/Devil.Web/Client/Devil.Web.Client.csproj'
+  - task: DotNetCoreCLI@2
+    displayName: 'dotnet build Web Server'
+    enabled: ${{ eq(parameters.doPublish, false) }}
+    inputs:
+      command: 'build'
+      projects: 'src/Devil.Web/Server/Devil.Web.Server.csproj'
+  - task: DotNetCoreCLI@2
+    displayName: 'Unit/Intergration Tests'
+    inputs:
+      command: 'test'
+      projects: 'src/Devil.Tests/Devil.Tests.csproj'
+      testRunTitle: '$(majorMinorVersion).$(semanticVersion)-TestRun'
+      arguments: '--collect "Code Coverage"'
+  - task: SonarCloudAnalyze@1
+    inputs:
+      jdkversion: 'JAVA_HOME_11_X64'
+  - task: SonarCloudPublish@1
+    inputs:
+      pollingTimeoutSec: '300'
+  - task: CmdLine@2
+    displayName: 'Publish Cli'
+    enabled: ${{ parameters.doPublish }}
+    inputs:
+      script: 'dotnet publish src/Devil.Cli/Devil.Cli.csproj -o $(Build.ArtifactStagingDirectory)/publish/Devil.Cli -c Release'
+  - task: CmdLine@2
+    displayName: 'Publish Web Server'
+    enabled: ${{ parameters.doPublish }}
+    inputs:
+      script: 'dotnet publish src/Devil.Web/Server/Devil.Web.Server.csproj -o $(Build.ArtifactStagingDirectory)/publish/Devil.Web.Server -c Release'
+  - task: PublishPipelineArtifact@1
+    enabled: ${{ parameters.doPublish }}
+    inputs:
+      targetPath: $(Build.ArtifactStagingDirectory)/publish
+      artifact: publish
