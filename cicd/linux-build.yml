@@ -40,51 +40,51 @@ steps:
     displayName: 'nuget restore Cli'
     inputs:
       command: 'restore'
-      projects: 'src\Devil.Cli\Devil.Cli.csproj'
+      projects: 'src/Devil.Cli/Devil.Cli.csproj'
   - task: DotNetCoreCLI@2
     displayName: 'nuget restore Wpf'
     inputs:
       command: 'restore'
-      projects: 'src\Devil.Wpf\Devil.Wpf.csproj'
+      projects: 'src/Devil.Wpf/Devil.Wpf.csproj'
   - task: DotNetCoreCLI@2
     displayName: 'nuget restore Web Client'
     inputs:
       command: 'restore'
-      projects: 'src\Devil.Web\Client\Devil.Web.Client.csproj'
+      projects: 'src/Devil.Web/Client/Devil.Web.Client.csproj'
   - task: DotNetCoreCLI@2
     displayName: 'nuget restore Web Server'
     inputs:
       command: 'restore'
-      projects: 'src\Devil.Web\Server\Devil.Web.Server.csproj'
+      projects: 'src/Devil.Web/Server/Devil.Web.Server.csproj'
   - task: DotNetCoreCLI@2
     displayName: 'dotnet build Cli'
     enabled: ${{ eq(parameters.doPublish, false) }}
     inputs:
       command: 'build'
-      projects: 'src\Devil.Cli\Devil.Cli.csproj'
+      projects: 'src/Devil.Cli/Devil.Cli.csproj'
   - task: DotNetCoreCLI@2
     displayName: 'dotnet build Wpf'
     enabled: ${{ eq(parameters.doPublish, false) }}
     inputs:
       command: 'build'
-      projects: 'src\Devil.Wpf\Devil.Wpf.csproj'
+      projects: 'src/Devil.Wpf/Devil.Wpf.csproj'
   - task: DotNetCoreCLI@2
     displayName: 'dotnet build Web Client'
     enabled: ${{ eq(parameters.doPublish, false) }}
     inputs:
       command: 'build'
-      projects: 'src\Devil.Web\Client\Devil.Web.Client.csproj'
+      projects: 'src/Devil.Web/Client/Devil.Web.Client.csproj'
   - task: DotNetCoreCLI@2
     displayName: 'dotnet build Web Server'
     enabled: ${{ eq(parameters.doPublish, false) }}
     inputs:
       command: 'build'
-      projects: 'src\Devil.Web\Server\Devil.Web.Server.csproj'
+      projects: 'src/Devil.Web/Server/Devil.Web.Server.csproj'
   - task: DotNetCoreCLI@2
     displayName: 'Unit/Intergration Tests'
     inputs:
       command: 'test'
-      projects: 'src\Devil.Tests\Devil.Tests.csproj'
+      projects: 'src/Devil.Tests/Devil.Tests.csproj'
       testRunTitle: '$(majorMinorVersion).$(semanticVersion)-TestRun'
       arguments: '--collect "Code Coverage"'
   - task: SonarCloudAnalyze@1
@@ -97,17 +97,17 @@ steps:
     displayName: 'Publish Cli'
     enabled: ${{ parameters.doPublish }}
     inputs:
-      script: 'dotnet publish src\Devil.Cli\Devil.Cli.csproj -o $(Build.ArtifactStagingDirectory)/publish/Devil.Cli -c Release'
+      script: 'dotnet publish src/Devil.Cli/Devil.Cli.csproj -o $(Build.ArtifactStagingDirectory)/publish/Devil.Cli -c Release'
   - task: CmdLine@2
     displayName: 'Publish Wpf'
     enabled: ${{ parameters.doPublish }}
     inputs:
-      script: 'dotnet publish src\Devil.Wpf\Devil.Wpf.csproj -o $(Build.ArtifactStagingDirectory)/publish/Devil.Wpf -c Release'
+      script: 'dotnet publish src/Devil.Wpf/Devil.Wpf.csproj -o $(Build.ArtifactStagingDirectory)/publish/Devil.Wpf -c Release'
   - task: CmdLine@2
     displayName: 'Publish Web Server'
     enabled: ${{ parameters.doPublish }}
     inputs:
-      script: 'dotnet publish src\Devil.Web\Server\Devil.Web.Server.csproj -o $(Build.ArtifactStagingDirectory)/publish/Devil.Web.Server -c Release'
+      script: 'dotnet publish src/Devil.Web/Server/Devil.Web.Server.csproj -o $(Build.ArtifactStagingDirectory)/publish/Devil.Web.Server -c Release'
   - task: PublishPipelineArtifact@1
     enabled: ${{ parameters.doPublish }}
     inputs:
