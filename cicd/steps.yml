@@ -20,6 +20,21 @@ steps:
     displayName: 'Install docfx'
     inputs:
       script: 'dotnet tool install -g docfx'
+  - task: SnykSecurityScan@1
+    inputs:
+        serviceConnectionEndpoint: 'snyk'
+        testType: 'app'
+        monitorWhen: 'always'
+        failOnIssues: true
+        projectName: 'devil'
+  - task: SonarCloudPrepare@1
+    inputs:
+      SonarCloud: 'Sonar'
+      organization: 'jeffreyladd'
+      scannerMode: 'MSBuild'
+      projectKey: 'JeffreyLadd_Devil'
+      projectName: 'Devil'
+      projectVersion: '$(majorMinorVersion).$(semanticVersion)'
   - task: Npm@1
     displayName: 'npm install'
     inputs:
@@ -78,11 +93,24 @@ steps:
       command: 'build'
       projects: 'src\Devil.Web\Client\Devil.Web.Client.csproj'
   - task: DotNetCoreCLI@2
+    displayName: 'Unit/Intergration Tests'
+    inputs:
+      command: 'test'
+      projects: 'src\Devil.Tests\Devil.Tests.csproj'
+      testRunTitle: '$(majorMinorVersion).$(semanticVersion)-TestRun'
+      arguments: '--collect "Code Coverage"'
+  - task: DotNetCoreCLI@2
     displayName: 'dotnet build Web Server'
     enabled: ${{ eq(parameters.doPublish, false) }}
     inputs:
       command: 'build'
       projects: 'src\Devil.Web\Server\Devil.Web.Server.csproj'
+  - task: SonarCloudAnalyze@1
+    inputs:
+      jdkversion: 'JAVA_HOME_11_X64'
+  - task: SonarCloudPublish@1
+    inputs:
+      pollingTimeoutSec: '300'
   - task: CmdLine@2
     displayName: 'Publish Cli'
     enabled: ${{ parameters.doPublish }}
