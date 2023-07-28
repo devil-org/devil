@@ -24,6 +24,7 @@ steps:
     inputs:
         serviceConnectionEndpoint: 'snyk'
         testType: 'app'
+        targetFile: 'src'
         monitorWhen: 'always'
         failOnIssues: true
         projectName: 'devil'
