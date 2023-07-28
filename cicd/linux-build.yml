@@ -42,11 +42,6 @@ steps:
       command: 'restore'
       projects: 'src/Devil.Cli/Devil.Cli.csproj'
   - task: DotNetCoreCLI@2
-    displayName: 'nuget restore Wpf'
-    inputs:
-      command: 'restore'
-      projects: 'src/Devil.Wpf/Devil.Wpf.csproj'
-  - task: DotNetCoreCLI@2
     displayName: 'nuget restore Web Client'
     inputs:
       command: 'restore'
@@ -62,12 +57,6 @@ steps:
     inputs:
       command: 'build'
       projects: 'src/Devil.Cli/Devil.Cli.csproj'
-  - task: DotNetCoreCLI@2
-    displayName: 'dotnet build Wpf'
-    enabled: ${{ eq(parameters.doPublish, false) }}
-    inputs:
-      command: 'build'
-      projects: 'src/Devil.Wpf/Devil.Wpf.csproj'
   - task: DotNetCoreCLI@2
     displayName: 'dotnet build Web Client'
     enabled: ${{ eq(parameters.doPublish, false) }}
@@ -98,11 +87,6 @@ steps:
     enabled: ${{ parameters.doPublish }}
     inputs:
       script: 'dotnet publish src/Devil.Cli/Devil.Cli.csproj -o $(Build.ArtifactStagingDirectory)/publish/Devil.Cli -c Release'
-  - task: CmdLine@2
-    displayName: 'Publish Wpf'
-    enabled: ${{ parameters.doPublish }}
-    inputs:
-      script: 'dotnet publish src/Devil.Wpf/Devil.Wpf.csproj -o $(Build.ArtifactStagingDirectory)/publish/Devil.Wpf -c Release'
   - task: CmdLine@2
     displayName: 'Publish Web Server'
     enabled: ${{ parameters.doPublish }}
