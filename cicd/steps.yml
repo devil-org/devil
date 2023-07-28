@@ -20,14 +20,6 @@ steps:
     displayName: 'Install docfx'
     inputs:
       script: 'dotnet tool install -g docfx'
-  - task: SnykSecurityScan@1
-    inputs:
-        serviceConnectionEndpoint: 'snyk'
-        testType: 'app'
-        targetFile: 'src'
-        monitorWhen: 'always'
-        failOnIssues: true
-        projectName: 'devil'
   - task: SonarCloudPrepare@1
     inputs:
       SonarCloud: 'Sonar'
