@@ -1,0 +1,60 @@
+﻿<PageTitle>@Title</PageTitle>
+
+@if (this._loading)
+{
+    <UISpinner></UISpinner>
+}
+else if (!this._loading)
+{
+    <Breadcrumb>
+        @foreach (var item in this.Breadcrumbs)
+        {
+            <BreadcrumbItem Active="@item.Active">
+                <BreadcrumbLink To="@item.Uri">@item.Title</BreadcrumbLink>
+            </BreadcrumbItem>
+        }
+    </Breadcrumb>
+    <UIError @ref="_errorUi"></UIError>
+
+    if (!this._showErrors)
+    {
+        @ChildContent
+    }
+    
+}
+
+@code {
+    #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+    [Parameter] public string Title { get; set; }
+
+    [Parameter] public RenderFragment ChildContent { get; set; }
+
+    [Parameter] public IReadOnlyList<Models.BreadcrumbItem> Breadcrumbs { get; set; }
+
+    bool _loading { get; set; } = true;
+
+    bool _showErrors = false;
+
+    UIError _errorUi;
+#pragma warning restore CS8618 // Non-nullable field must contain a non-null value when exiting constructor. Consider declaring as nullable.
+
+
+    public void SetLoading(bool val)
+    {
+        this._loading = val;
+        InvokeAsync(() =>
+        {
+            StateHasChanged();
+        });
+    }
+
+    public void SetErrors(IEnumerable<string> errs)
+    {
+        this._errorUi.SetErrors(errs);
+        this._showErrors = true;
+        InvokeAsync(() =>
+        {
+            StateHasChanged();
+        });
+    }
+}

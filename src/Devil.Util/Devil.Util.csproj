@@ -1,0 +1,5 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="../BuildTarget.targets"/>
+	<Import Project="../BuildSettings.targets"/>
+	<Import Project="../Versions.targets"/>
+</Project>

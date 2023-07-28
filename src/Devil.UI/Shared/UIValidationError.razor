@@ -1,0 +1,32 @@
+﻿@if (this._errors.Any())
+{
+    <Alert Color="Color.Warning" Visible>
+        <Heading Size="HeadingSize.Is4" TextColor="TextColor.Success">
+            Validation Errors
+        </Heading>
+        <Paragraph>
+            <ul>
+                @foreach (var err in _errors)
+                {
+                    <li class="error-item">@err</li>
+                }
+            </ul>
+        </Paragraph>
+    </Alert>
+}
+
+@code {
+    List<string> _errors { get; set; } = new List<string>();
+
+    public void SetErrors(IEnumerable<string> errs)
+    {
+        this._errors.Clear();
+        foreach (var err in errs)
+            this._errors.Add(err);
+
+        InvokeAsync(() =>
+        {
+            StateHasChanged();
+        });
+    }
+}

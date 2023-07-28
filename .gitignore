@@ -396,3 +396,5 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/src/Devil.UI/wwwroot/*.css
+/src/Devil.UI/wwwroot/*.js

@@ -1,0 +1,23 @@
+name: $(majorMinorVersion).$(semanticVersion)-PR # $(rev:r) 
+
+trigger: none
+ 
+pr:
+- master
+
+
+variables:
+- template: cicd/variables.yml
+
+pool:
+  vmImage: windows-latest
+
+stages:
+  - stage: 'BuildAndCompile'
+    displayName: 'Build'
+    jobs:
+      - job: 
+        steps:
+          - template: cicd/steps.yml
+            parameters:
+              doPublish: false
