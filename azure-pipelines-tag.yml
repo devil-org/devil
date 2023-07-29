@@ -31,14 +31,3 @@ stages:
             parameters:
               doPublish: true
               tag: '$(tag)'
-
-stages:
-  - stage: 'BuildAndPublish'
-    displayName: 'Build and Publish'
-    jobs:
-      - job: 
-        steps:
-          - template: cicd/steps.yml
-            parameters:
-              doPublish: true
-              tag: '$(tag)'

@@ -74,7 +74,6 @@ steps:
     inputs:
       command: 'test'
       projects: 'src/Devil.Tests/Devil.Tests.csproj'
-      testRunTitle: '$(majorMinorVersion).$(semanticVersion)-TestRun'
       arguments: '--collect "Code Coverage"'
   - task: SonarCloudAnalyze@1
     inputs:
