@@ -4,6 +4,7 @@ using Microsoft.Extensions.Hosting;
 using System.Reflection;
 using System.Windows;
 using Devil.UI;
+using System.Configuration;
 
 namespace Devil.Wpf;
 
@@ -38,6 +39,9 @@ public partial class App : Application
 
     private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
     {
+        var provider = context.Configuration.GetValue("Provider", "SqlServer");
+
+
         services.AddWpfBlazorWebView();
         services.AddBlazorWebViewDeveloperTools();
         services.SetupDevilUI();

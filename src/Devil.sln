@@ -27,12 +27,23 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Devil.UI", "Devil.UI\Devil.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{DDA8CC7D-26D3-4AB6-8813-7C70B57FCF98}"
 	ProjectSection(SolutionItems) = preProject
+		AddDatabaseMigration.ps1 = AddDatabaseMigration.ps1
 		BuildSettings.targets = BuildSettings.targets
 		BuildTarget.targets = BuildTarget.targets
 		Versions.targets = Versions.targets
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devil.Tests", "Devil.Tests\Devil.Tests.csproj", "{199611D0-27C1-465A-B2F0-5333BE44D086}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Devil.Tests", "Devil.Tests\Devil.Tests.csproj", "{199611D0-27C1-465A-B2F0-5333BE44D086}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Migrations", "Migrations", "{9CFB757F-53D5-4103-9FB7-4207163E6811}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devil.Domain.MsSqlServerMigrations", "Migrations\Devil.Domain.MsSqlServerMigrations\Devil.Domain.MsSqlServerMigrations.csproj", "{D3B6B5DC-7C3D-4919-A7BE-4CF885589535}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devil.Domain.SqliteMigrations", "Migrations\Devil.Domain.SqliteMigrations\Devil.Domain.SqliteMigrations.csproj", "{F73B0B78-765A-4403-9C40-8D658CAB554D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devil.Domain.MySqlMigrations", "Migrations\Devil.Domain.MySqlMigrations\Devil.Domain.MySqlMigrations.csproj", "{5D15907E-CB72-4D2C-8D7B-2CF51DA5BFAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Devil.Domain.PostgresMigrations", "Migrations\Devil.Domain.PostgresMigrations\Devil.Domain.PostgresMigrations.csproj", "{C6A1804D-C287-4FA4-A00D-D2AF27DC4F63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -80,6 +91,22 @@ Global
 		{199611D0-27C1-465A-B2F0-5333BE44D086}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{199611D0-27C1-465A-B2F0-5333BE44D086}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{199611D0-27C1-465A-B2F0-5333BE44D086}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3B6B5DC-7C3D-4919-A7BE-4CF885589535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3B6B5DC-7C3D-4919-A7BE-4CF885589535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3B6B5DC-7C3D-4919-A7BE-4CF885589535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3B6B5DC-7C3D-4919-A7BE-4CF885589535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F73B0B78-765A-4403-9C40-8D658CAB554D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F73B0B78-765A-4403-9C40-8D658CAB554D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F73B0B78-765A-4403-9C40-8D658CAB554D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F73B0B78-765A-4403-9C40-8D658CAB554D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D15907E-CB72-4D2C-8D7B-2CF51DA5BFAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D15907E-CB72-4D2C-8D7B-2CF51DA5BFAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D15907E-CB72-4D2C-8D7B-2CF51DA5BFAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D15907E-CB72-4D2C-8D7B-2CF51DA5BFAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6A1804D-C287-4FA4-A00D-D2AF27DC4F63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6A1804D-C287-4FA4-A00D-D2AF27DC4F63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6A1804D-C287-4FA4-A00D-D2AF27DC4F63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6A1804D-C287-4FA4-A00D-D2AF27DC4F63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +117,10 @@ Global
 		{B4E0766A-F42F-4555-9C57-5FAF0C54F3C5} = {7E82C828-062D-456F-BED0-2BF8ADCD022B}
 		{2AA45BBA-DA58-432D-8ACD-3977F2189423} = {3ECD4AE9-3757-48A6-B255-A76DBFB409A1}
 		{631391DD-DB89-405F-8C9C-ECF20A45E587} = {3ECD4AE9-3757-48A6-B255-A76DBFB409A1}
+		{D3B6B5DC-7C3D-4919-A7BE-4CF885589535} = {9CFB757F-53D5-4103-9FB7-4207163E6811}
+		{F73B0B78-765A-4403-9C40-8D658CAB554D} = {9CFB757F-53D5-4103-9FB7-4207163E6811}
+		{5D15907E-CB72-4D2C-8D7B-2CF51DA5BFAD} = {9CFB757F-53D5-4103-9FB7-4207163E6811}
+		{C6A1804D-C287-4FA4-A00D-D2AF27DC4F63} = {9CFB757F-53D5-4103-9FB7-4207163E6811}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E04DC5C5-4AD0-41FF-8342-CAAAE5DADEF3}
