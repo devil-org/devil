@@ -26,7 +26,6 @@
 		<ProjectReference Include="..\Devil.Web\Client\Devil.Web.Client.csproj" />
 		<ProjectReference Include="..\Devil.Web\Server\Devil.Web.Server.csproj" />
 		<ProjectReference Include="..\Devil.Web\Shared\Devil.Web.Shared.csproj" />
-		<ProjectReference Include="..\Devil.Wpf\Devil.Wpf.csproj" />
 		<ProjectReference Include="..\Migrations\Devil.Domain.MsSqlServerMigrations\Devil.Domain.MsSqlServerMigrations.csproj" />
 		<ProjectReference Include="..\Migrations\Devil.Domain.MySqlMigrations\Devil.Domain.MySqlMigrations.csproj" />
 		<ProjectReference Include="..\Migrations\Devil.Domain.PostgresMigrations\Devil.Domain.PostgresMigrations.csproj" />
