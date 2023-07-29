@@ -7,20 +7,26 @@ trigger:
 
 pr: none
 
-
 variables:
 - template: cicd/variables.yml
 
-pool:
-  vmImage: windows-latest
-
 stages:
-  - stage: 'BuildAndPublish'
-    displayName: 'Build and Publish'
+  - stage: 'BuildAndCompile'
+    displayName: 'Build'
     jobs:
       - job: 
+        pool:
+          vmImage: 'ubuntu-latest'
         steps:
-          - template: cicd/steps.yml
+          - template: cicd/linux-build.yml
+            parameters:
+              doPublish: true
+              tag: '$(majorMinorVersion).$(semanticVersion)-RC'
+      - job: 
+        pool:
+          vmImage: 'windows-latest'
+        steps:
+          - template: cicd/win-build.yml
             parameters:
               doPublish: true
               tag: '$(majorMinorVersion).$(semanticVersion)-RC'
