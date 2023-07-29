@@ -4,10 +4,12 @@
         [string]$Name
     )
 
-
 cd $PSScriptRoot\Devil.Web\Server
+#cd $PSScriptRoot\Devil.Domain
 
-dotnet ef migrations add $Name --project ../../Devil.Domain.MsSqlServerMigrations -- --provider mssql
-dotnet ef migrations add $Name --project ../../Devil.Domain.SqliteMigrations -- --provider sqlite
-dotnet ef migrations add $Name --project ../../Devil.Domain.MySqlMigrations -- --provider mysql
-dotnet ef migrations add $Name --project ../../Devil.Domain.MsSqlServerMigrations -- --provider postgres
+dotnet ef migrations add $Name --project ../../Migrations/Devil.Domain.MsSqlServerMigrations -- --DatabaseType mssql
+dotnet ef migrations add $Name --project ../../Migrations/Devil.Domain.SqliteMigrations -- --DatabaseType sqlite
+dotnet ef migrations add $Name --project ../../Migrations/Devil.Domain.MySqlMigrations -- --DatabaseType mysql
+dotnet ef migrations add $Name --project ../../Migrations/Devil.Domain.PostgresMigrations -- --DatabaseType postgres
+
+cd $PSScriptRoot

@@ -14,9 +14,10 @@ internal static partial class ModelBuilders
 {
     internal static void SetGroupInventoryModel(this ModelBuilder mb)
     {
-        mb.Entity<GroupInventory>(i =>
+        mb.Entity<GroupInventory>(gi =>
         {
-            i.ToTable("GroupInventories");
+            gi.ToTable("GroupInventories");
+            gi.HasKey(x => new { x.GroupId, x.InventoryId });
         });
     }
 }

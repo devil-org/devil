@@ -1,16 +1,19 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using Devil.Domain;
+using Devil.UI;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Windows;
-using Devil.UI;
-using System.Configuration;
 
 namespace Devil.Wpf;
 
 /// <summary>
 /// Interaction logic for App.xaml
 /// </summary>
+[ExcludeFromCodeCoverage]
 public partial class App : Application
 {
     public static IHost? Host { get; private set; }
@@ -30,20 +33,18 @@ public partial class App : Application
             .Build();
 
 
-        //using var scope = Host.Services.CreateScope();
-        //var db = scope.ServiceProvider.GetRequiredService<DataContext>();
+        using var scope = Host.Services.CreateScope();
+        var db = scope.ServiceProvider.GetRequiredService<DataContext>();
 
-        //if (db.Database.GetPendingMigrations().Any())
-        //    db.Database.Migrate();
+        if (db.Database.GetPendingMigrations().Any())
+            db.Database.Migrate();
     }
 
     private void ConfigureServices(HostBuilderContext context, IServiceCollection services)
     {
-        var provider = context.Configuration.GetValue("Provider", "SqlServer");
-
-
         services.AddWpfBlazorWebView();
         services.AddBlazorWebViewDeveloperTools();
+        services.SetupDevilDomain(context.Configuration);
         services.SetupDevilUI();
     }
 }
