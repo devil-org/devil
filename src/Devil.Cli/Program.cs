@@ -1,5 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
-using Devil;
+﻿using Devil;
+using Devil.Domain;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
@@ -11,5 +11,5 @@ using IHost _host = Host.CreateDefaultBuilder(args)
     })
     .ConfigureServices((h, s) =>
     {
-        
+        s.SetupDevilDomain(h.Configuration);
     }).Build();

@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿namespace Devil.Tests.Utils;
 
-namespace Devil.Tests.Utils;
-
+/// <summary>
+/// This is a Collection of tests to validate the Configuration that is loaded from <see cref="Devil.ConfigurationUtils.DevilConfigurationFilePath"/>
+/// </summary>
 [TestClass]
 public class DevilConfigTests
 {
+    /// <summary>
+    /// This test validates all the defaults when a brand new DevilConfig is generated.
+    /// </summary>
     [TestMethod]
     public void NewDevilConfigTest()
     {

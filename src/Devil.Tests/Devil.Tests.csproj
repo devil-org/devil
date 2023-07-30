@@ -8,21 +8,33 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.5.0" />
-    <PackageReference Include="MSTest.TestAdapter" Version="2.2.10" />
-    <PackageReference Include="MSTest.TestFramework" Version="2.2.10" />
-    <PackageReference Include="coverlet.collector" Version="3.2.0" />
+    <PackageReference Include="bunit" Version="1.22.19" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.6.3" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
+    <PackageReference Include="coverlet.collector" Version="6.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
   </ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\Devil.Cli\Devil.Cli.csproj" />
 		<ProjectReference Include="..\Devil.Domain\Devil.Domain.csproj" />
 		<ProjectReference Include="..\Devil.Services\Devil.Services.csproj" />
+		<ProjectReference Include="..\Devil.UI\Devil.UI.csproj" />
 		<ProjectReference Include="..\Devil.Util\Devil.Util.csproj" />
+		<ProjectReference Include="..\Devil.Web\Client\Devil.Web.Client.csproj" />
+		<ProjectReference Include="..\Devil.Web\Server\Devil.Web.Server.csproj" />
+		<ProjectReference Include="..\Devil.Web\Shared\Devil.Web.Shared.csproj" />
+		<ProjectReference Include="..\Migrations\Devil.Domain.MsSqlServerMigrations\Devil.Domain.MsSqlServerMigrations.csproj" />
+		<ProjectReference Include="..\Migrations\Devil.Domain.MySqlMigrations\Devil.Domain.MySqlMigrations.csproj" />
+		<ProjectReference Include="..\Migrations\Devil.Domain.PostgresMigrations\Devil.Domain.PostgresMigrations.csproj" />
+		<ProjectReference Include="..\Migrations\Devil.Domain.SqliteMigrations\Devil.Domain.SqliteMigrations.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <Folder Include="Services\" />
-	  <Folder Include="UI\" />
 	</ItemGroup>
 
 </Project>

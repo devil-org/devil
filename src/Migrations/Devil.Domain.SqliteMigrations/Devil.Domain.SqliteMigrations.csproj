@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<Import Project="../../BuildTarget.targets" />
+	<Import Project="../../BuildSettings.targets" />
+	<Import Project="../../Versions.targets" />
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.9" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\..\Devil.Domain\Devil.Domain.csproj" />
+	</ItemGroup>
+</Project>

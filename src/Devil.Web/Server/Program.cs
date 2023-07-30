@@ -1,10 +1,12 @@
 using Devil;
+using Devil.Domain;
 
 await ConfigurationUtils.SetupFirstRun();
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Configuration.AddJsonFile(ConfigurationUtils.DevilConfigurationFilePath);
 
+builder.Services.SetupDevilDomain(builder.Configuration);
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();

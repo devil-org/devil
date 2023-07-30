@@ -2,6 +2,7 @@
 	<Import Project="../../BuildTarget.targets" />
 	<Import Project="../../BuildSettings.targets" />
 	<Import Project="../../Versions.targets" />
+	<Import Project="../../CommonUI.targets" />
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="7.0.9" />
@@ -11,6 +12,10 @@
 	  <ProjectReference Include="..\..\Devil.Domain\Devil.Domain.csproj" />
 	  <ProjectReference Include="..\..\Devil.Services\Devil.Services.csproj" />
     <ProjectReference Include="..\..\Devil.Util\Devil.Util.csproj" />
+    <ProjectReference Include="..\..\Migrations\Devil.Domain.MsSqlServerMigrations\Devil.Domain.MsSqlServerMigrations.csproj" />
+    <ProjectReference Include="..\..\Migrations\Devil.Domain.MySqlMigrations\Devil.Domain.MySqlMigrations.csproj" />
+    <ProjectReference Include="..\..\Migrations\Devil.Domain.PostgresMigrations\Devil.Domain.PostgresMigrations.csproj" />
+    <ProjectReference Include="..\..\Migrations\Devil.Domain.SqliteMigrations\Devil.Domain.SqliteMigrations.csproj" />
     <ProjectReference Include="..\Client\Devil.Web.Client.csproj" />
     <ProjectReference Include="..\Shared\Devil.Web.Shared.csproj" />
   </ItemGroup>
