@@ -5,7 +5,6 @@
     )
 
 cd $PSScriptRoot\Devil.Web\Server
-#cd $PSScriptRoot\Devil.Domain
 
 dotnet ef migrations add $Name --project ../../Migrations/Devil.Domain.MsSqlServerMigrations -- --DatabaseType mssql
 dotnet ef migrations add $Name --project ../../Migrations/Devil.Domain.SqliteMigrations -- --DatabaseType sqlite
