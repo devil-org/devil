@@ -1,7 +1,14 @@
 ﻿namespace Devil
 {
+    /// <summary>
+    /// Extension Class for misc object types.
+    /// </summary>
     public static class ObjectExtensions
     {
+        /// <summary>
+        /// Extension method for creating a Guid based on Date Time that also aligns to Sql Servers accuracy.
+        /// </summary>
+        /// <returns></returns>
         public static Guid NewSeqGuid()
         {
             byte[] destinationArray = Guid.NewGuid().ToByteArray();

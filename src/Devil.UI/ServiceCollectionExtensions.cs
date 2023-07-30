@@ -15,7 +15,6 @@ public static class ServiceCollectionExtensions
     /// Extension Method to setup all the Devil.UI Dependencies.
     /// </summary>
     /// <param name="services">The Service Collection for DI.</param>
-    /// <param name="config">The configuration.</param>
     /// <returns></returns>
     public static IServiceCollection SetupDevilUI(this IServiceCollection services)
         => services.AddBlazorise(options =>
